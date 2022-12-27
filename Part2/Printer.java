@@ -1,15 +1,11 @@
-import java.util.Arrays;
+import java.util.ArrayList;
 
 public class Printer {
 
-    public static void print(Income[] incomes) {
-        System.out.println(Arrays.toString(incomes));
+    public static void print(ArrayList<?> transactions) {
+        System.out.println(transactions);
     }
-
-    public static void print(Expense[] expenses) {
-        System.out.println(Arrays.toString(expenses));
-    }
-
+    
     public static void inputMessage(String inputKind) {
         System.out.printf("Input of one %s transaction.\n", inputKind);
     }
@@ -60,11 +56,7 @@ public class Printer {
     public static void invalidArgumentMessage() {
         System.out.println("Invalid command, choose from the list");
     }
-
-    public static void noSpaceLeft(String transactionType) {
-        System.out.printf("Transaction not added. No more free place for %s inputs.", transactionType);
-    }
-
+    
     public static void wrongNumberFormat() {
         System.out.println("Wrong number, try again with format ###.##");
     }
