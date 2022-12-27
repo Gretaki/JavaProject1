@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Income {
     private final float amount;
@@ -21,12 +22,8 @@ public class Income {
 
     @Override
     public String toString() {
-        return "Income{" +
-            "amount=" + amount +
-            ", date=" + date +
-            ", category='" + category + '\'' +
-            ", isBankTransaction=" + isBankTransaction +
-            ", additionalInformation='" + additionalInformation + '\'' +
-            '}';
+        return String.format("Income: {amount=%.2f, date=%s, category=%s, isBankTransaction=%b, additionalInformation=%s}",
+            amount, date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),
+            category, isBankTransaction, additionalInformation);
     }
 }

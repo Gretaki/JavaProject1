@@ -19,9 +19,10 @@ public class Program {
                 case "x" -> runProgram = false;
                 case "ii" -> addIncome(sc, budget);
                 case "ie" -> addExpense(sc, budget);
+                case "b" -> Printer.printBudget(budget.balance());
+                case "ot" -> printAllTransactions(budget);
                 case "oi" -> Printer.print(budget.getIncomes());
                 case "oe" -> Printer.print(budget.getExpenses());
-                case "b" -> Printer.printBudget(budget.balance());
                 default -> Printer.invalidArgumentMessage();
             }
         }
@@ -56,5 +57,10 @@ public class Program {
 
         Expense expense = new Expense(amount, dateTime, category, paymentMethod, additionalInformation);
         budget.setExpense(expense);
+    }
+
+    private static void printAllTransactions(Budget budget) {
+        Printer.print(budget.getIncomes());
+        Printer.print(budget.getExpenses());
     }
 }

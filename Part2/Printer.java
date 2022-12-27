@@ -5,7 +5,7 @@ public class Printer {
     public static void print(ArrayList<?> transactions) {
         System.out.println(transactions);
     }
-    
+
     public static void inputMessage(String inputKind) {
         System.out.printf("Input of one %s transaction.\n", inputKind);
     }
@@ -47,9 +47,10 @@ public class Printer {
             Options:
             [ii] - input income
             [ie] - input expense
+            [b] - get budget
+            [ot] - get all transactions
             [oi] - output income
             [oe] - output expense
-            [b] - get budget
             [x] - exit
             """);
     }
@@ -57,7 +58,7 @@ public class Printer {
     public static void invalidArgumentMessage() {
         System.out.println("Invalid command, choose from the list");
     }
-    
+
     public static void wrongNumberFormat() {
         System.out.println("Wrong number, try again with format ###.##");
     }
