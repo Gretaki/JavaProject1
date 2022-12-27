@@ -23,7 +23,7 @@ public class Printer {
     }
 
     public static void enterDateTime() {
-        System.out.print("Enter date and time of the expense transaction: ");
+        System.out.print("Enter date and time of the expense transaction (for now - write 'now'): ");
     }
 
     public static void enterCategory() {
