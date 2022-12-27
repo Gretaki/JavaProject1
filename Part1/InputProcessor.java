@@ -25,7 +25,7 @@ public class InputProcessor {
                 Printer.noAmountField();
             }
         }
-        return amount;
+        return (float) (Math.round(amount * 100.0) / 100.0);
     }
 
     public LocalDate getDate() {
