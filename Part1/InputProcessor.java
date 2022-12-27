@@ -13,114 +13,91 @@ public class InputProcessor {
     }
 
     public float getAmount() {
-        float amount = 0;
-        while (amount == 0) {
+        while (true) {
             Printer.enterAmount();
             String inputAmount = sc.nextLine().trim();
             try {
-                amount = Float.parseFloat(inputAmount);
+                float amount = Float.parseFloat(inputAmount);
+                return (float) (Math.round(amount * 100.0) / 100.0);
             } catch (NumberFormatException e) {
                 Printer.wrongNumberFormat();
             } catch (NullPointerException e) {
                 Printer.noAmountField();
             }
         }
-        return (float) (Math.round(amount * 100.0) / 100.0);
     }
 
     public LocalDate getDate() {
-        LocalDate date = null;
-        while (date == null) {
+        while (true) {
             Printer.enterDate();
             String inputDate = sc.nextLine().trim();
 
             if (inputDate.equals("now")) {
-                date = LocalDate.now();
-                break;
+                return LocalDate.now();
             }
 
             try {
-                date = LocalDate.parse(inputDate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                return LocalDate.parse(inputDate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
             } catch (DateTimeParseException e) {
                 Printer.wrongDateFormat();
             }
         }
-        return date;
     }
 
     public LocalDateTime getDateTime() {
-        LocalDateTime dateTime = null;
-        while (dateTime == null) {
+        while (true) {
             Printer.enterDateTime();
             String inputDateTime = sc.nextLine().trim();
 
             if (inputDateTime.equals("now")) {
                 LocalDateTime now = LocalDateTime.now();
-                dateTime = LocalDateTime.of(now.toLocalDate(), LocalTime.of(now.getHour(), now.getMinute(), 0, 0));
-                break;
+                return LocalDateTime.of(now.toLocalDate(), LocalTime.of(now.getHour(), now.getMinute(), 0, 0));
             }
 
             try {
-                dateTime = LocalDateTime.parse(inputDateTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+                return LocalDateTime.parse(inputDateTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
             } catch (DateTimeParseException e) {
                 Printer.wrongDateTimeFormat();
             }
         }
-        return dateTime;
     }
 
     public String getCategory() {
-        String category = null;
-        while (category == null) {
-            Printer.enterCategory();
-            String inputCategory = sc.nextLine().trim();
+        Printer.enterCategory();
+        String inputCategory = sc.nextLine().trim();
 
-            if (inputCategory.equals("-")) {
-                break;
-            }
-            category = inputCategory;
+        if (inputCategory.equals("-")) {
+            return null;
         }
-        return category;
+        return inputCategory;
     }
 
     public String getAdditionalInformation() {
-        String additionalInformation = null;
-        while (additionalInformation == null) {
-            Printer.enterAdditionalInformation();
-            String inputAdditionalInformation = sc.nextLine().trim();
+        Printer.enterAdditionalInformation();
+        String inputAdditionalInformation = sc.nextLine().trim();
 
-            if (inputAdditionalInformation.equals("-")) {
-                break;
-            }
-            additionalInformation = inputAdditionalInformation;
+        if (inputAdditionalInformation.equals("-")) {
+            return null;
         }
-        return additionalInformation;
+        return inputAdditionalInformation;
     }
 
     public boolean getIsBankTransaction() {
-        boolean isBankTransaction = false;
         Printer.enterIsBankTransaction();
         String inputIsBankTransaction = sc.nextLine().trim().toLowerCase();
 
-        if (inputIsBankTransaction.equals("yes") || inputIsBankTransaction.equals("true")
+        return inputIsBankTransaction.equals("yes") || inputIsBankTransaction.equals("true")
             || inputIsBankTransaction.equals("y") || inputIsBankTransaction.equals("taip")
-            || inputIsBankTransaction.equals("t") || inputIsBankTransaction.equals("+")) {
-            isBankTransaction = true;
-        }
-        return isBankTransaction;
+            || inputIsBankTransaction.equals("t") || inputIsBankTransaction.equals("+");
     }
 
     public String getPaymentMethod() {
-        String paymentMethod = null;
-        while (paymentMethod == null) {
-            Printer.enterPaymentMethod();
-            String inputPaymentMethod = sc.nextLine().trim();
+        Printer.enterPaymentMethod();
+        String inputPaymentMethod = sc.nextLine().trim();
 
-            if (inputPaymentMethod.equals("-")) {
-                break;
-            }
-            paymentMethod = inputPaymentMethod;
+        if (inputPaymentMethod.equals("-")) {
+            return null;
         }
-        return paymentMethod;
+        return inputPaymentMethod;
     }
 }
