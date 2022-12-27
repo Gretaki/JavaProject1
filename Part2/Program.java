@@ -19,8 +19,7 @@ public class Program {
                 case "x" -> runProgram = false;
                 case "ii" -> addIncome(sc, budget);
                 case "ie" -> addExpense(sc, budget);
-                case "di" -> deleteIncome(sc, budget);
-                case "de" -> deleteExpense(sc, budget);
+                case "d" -> deleteTransaction(sc, budget);
                 case "b" -> Printer.printBudget(budget.balance());
                 case "o" -> printAllTransactions(budget);
                 case "oi" -> Printer.print(budget.getIncomes(), "Incomes");
@@ -31,7 +30,7 @@ public class Program {
         sc.close();
 
     }
-    
+
     private static void addIncome(Scanner sc, Budget budget) {
         InputProcessor inputProcessor = new InputProcessor(sc);
         Printer.inputMessage("income");
@@ -61,20 +60,12 @@ public class Program {
         budget.setExpense(expense);
     }
 
-    private static void deleteIncome(Scanner sc, Budget budget) {
+    private static void deleteTransaction(Scanner sc, Budget budget) {
         InputProcessor inputProcessor = new InputProcessor(sc, budget);
-        Printer.deleteMessage("income");
+        Printer.deleteMessage();
 
         String id = inputProcessor.getId();
-        budget.deleteIncome(id);
-    }
-
-    private static void deleteExpense(Scanner sc, Budget budget) {
-        InputProcessor inputProcessor = new InputProcessor(sc, budget);
-        Printer.deleteMessage("expense");
-
-        String id = inputProcessor.getId();
-        budget.deleteExpense(id);
+        budget.deleteTransaction(id);
     }
     
     private static void printAllTransactions(Budget budget) {

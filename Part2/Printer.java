@@ -10,8 +10,8 @@ public class Printer {
         System.out.printf("Input of one %s transaction.\n", inputKind);
     }
 
-    public static void deleteMessage(String inputKind) {
-        System.out.printf("Deletion of one %s transaction.\n", inputKind);
+    public static void deleteMessage() {
+        System.out.println("Deletion of one transaction.");
     }
 
     public static void enterAmount() {
@@ -51,8 +51,7 @@ public class Printer {
             Options:
             [ii] - input income
             [ie] - input expense
-            [di] - delete income
-            [de] - delete expense
+            [d] - delete transactions
             [b] - get budget
             [o] - output all transactions
             [oi] - output income

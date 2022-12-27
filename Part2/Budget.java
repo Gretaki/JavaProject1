@@ -16,11 +16,8 @@ public class Budget {
         return balance;
     }
 
-    public void deleteIncome(String id) {
+    public void deleteTransaction(String id) {
         incomes.removeIf(income -> income.getId().equals(id));
-    }
-
-    public void deleteExpense(String id) {
         expenses.removeIf(expense -> expense.getId().equals(id));
     }
 

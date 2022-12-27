@@ -18,18 +18,18 @@ public class Expense {
         this.additionalInformation = additionalInformation;
     }
 
+    @Override
+    public String toString() {
+        return String.format("{id=%s, amount=%.2f, dateTime=%s, category=%s, paymentMethod=%s, additionalInformation=%s}",
+            id, amount, dateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")),
+            category, paymentMethod, additionalInformation);
+    }
+    
     public String getId() {
         return id;
     }
 
     public float getAmount() {
         return amount;
-    }
-
-    @Override
-    public String toString() {
-        return String.format("{id=%s, amount=%.2f, dateTime=%s, category=%s, paymentMethod=%s, additionalInformation=%s}",
-            id, amount, dateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")),
-            category, paymentMethod, additionalInformation);
     }
 }
