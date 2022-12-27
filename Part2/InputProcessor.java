@@ -7,9 +7,16 @@ import java.util.Scanner;
 
 public class InputProcessor {
     private final Scanner sc;
+    private final Budget budget;
 
     public InputProcessor(Scanner sc) {
         this.sc = sc;
+        budget = null;
+    }
+
+    public InputProcessor(Scanner sc, Budget budget) {
+        this.sc = sc;
+        this.budget = budget;
     }
 
     public float getAmount() {
@@ -122,5 +129,26 @@ public class InputProcessor {
             paymentMethod = inputPaymentMethod;
         }
         return paymentMethod;
+    }
+
+    public String getId() {
+        while (true) {
+            Printer.enterId();
+            String inputId = sc.nextLine().trim();
+
+            for (Income income : budget.getIncomes()) {
+                if (income.getId().equals(inputId)) {
+                    return inputId;
+                }
+            }
+            
+            for (Expense expense : budget.getExpenses()) {
+                if (expense.getId().equals(inputId)) {
+                    return inputId;
+                }
+            }
+
+            Printer.wrongId();
+        }
     }
 }

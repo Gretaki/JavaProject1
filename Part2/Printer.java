@@ -2,12 +2,16 @@ import java.util.ArrayList;
 
 public class Printer {
 
-    public static void print(ArrayList<?> transactions) {
-        System.out.println(transactions);
+    public static void print(ArrayList<?> transactions, String type) {
+        System.out.println(type.concat(": ").concat(String.valueOf(transactions)));
     }
 
     public static void inputMessage(String inputKind) {
         System.out.printf("Input of one %s transaction.\n", inputKind);
+    }
+
+    public static void deleteMessage(String inputKind) {
+        System.out.printf("Deletion of one %s transaction.\n", inputKind);
     }
 
     public static void enterAmount() {
@@ -47,8 +51,10 @@ public class Printer {
             Options:
             [ii] - input income
             [ie] - input expense
+            [di] - delete income
+            [de] - delete expense
             [b] - get budget
-            [ot] - get all transactions
+            [o] - output all transactions
             [oi] - output income
             [oe] - output expense
             [x] - exit
@@ -61,6 +67,10 @@ public class Printer {
 
     public static void wrongNumberFormat() {
         System.out.println("Wrong number, try again with format ###.##");
+    }
+
+    public static void wrongId() {
+        System.out.println("Id does not exist, try again");
     }
 
     public static void noAmountField() {
@@ -77,5 +87,9 @@ public class Printer {
 
     public static void printBudget(float balance) {
         System.out.printf("Budged is: %.2f\n", balance);
+    }
+
+    public static void enterId() {
+        System.out.print("Enter id: ");
     }
 }

@@ -1,7 +1,9 @@
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.UUID;
 
 public class Expense {
+    private final String id = UUID.randomUUID().toString();
     private final float amount;
     private final LocalDateTime dateTime;
     private final String category;
@@ -16,14 +18,18 @@ public class Expense {
         this.additionalInformation = additionalInformation;
     }
 
+    public String getId() {
+        return id;
+    }
+
     public float getAmount() {
         return amount;
     }
 
     @Override
     public String toString() {
-        return String.format("Expense: {amount=%.2f, dateTime=%s, category=%s, paymentMethod=%s, additionalInformation=%s}",
-            amount, dateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")),
+        return String.format("{id=%s, amount=%.2f, dateTime=%s, category=%s, paymentMethod=%s, additionalInformation=%s}",
+            id, amount, dateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")),
             category, paymentMethod, additionalInformation);
     }
 }

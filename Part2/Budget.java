@@ -4,18 +4,26 @@ public class Budget {
     private final ArrayList<Income> incomes = new ArrayList<>();
     private final ArrayList<Expense> expenses = new ArrayList<>();
 
-    public float balance(){
+    public float balance() {
         float balance = 0;
-        for (Income income: incomes) {
-            balance+= income.getAmount();
+        for (Income income : incomes) {
+            balance += income.getAmount();
         }
-        for (Expense expense: expenses) {
-            balance-= expense.getAmount();
+        for (Expense expense : expenses) {
+            balance -= expense.getAmount();
         }
-        
+
         return balance;
     }
-    
+
+    public void deleteIncome(String id) {
+        incomes.removeIf(income -> income.getId().equals(id));
+    }
+
+    public void deleteExpense(String id) {
+        expenses.removeIf(expense -> expense.getId().equals(id));
+    }
+
     public void setIncome(Income income) {
         incomes.add(income);
     }
