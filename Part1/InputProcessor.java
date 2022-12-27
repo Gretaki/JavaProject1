@@ -6,7 +6,7 @@ import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 public class InputProcessor {
-    Scanner sc;
+    private final Scanner sc;
 
     public InputProcessor(Scanner sc) {
         this.sc = sc;
@@ -20,9 +20,9 @@ public class InputProcessor {
             try {
                 amount = Float.parseFloat(inputAmount);
             } catch (NumberFormatException e) {
-                System.out.println("Wrong number, try again with format ###.##");
+                Printer.wrongNumberFormat();
             } catch (NullPointerException e) {
-                System.out.println("Amount field is necessary, please enter amount in format ###.##");
+                Printer.noAmountField();
             }
         }
         return amount;
@@ -42,7 +42,7 @@ public class InputProcessor {
             try {
                 date = LocalDate.parse(inputDate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
             } catch (DateTimeParseException e) {
-                System.out.println("Wrong date, try again with format yyyy-MM-dd");
+                Printer.wrongDateFormat();
             }
         }
         return date;
@@ -63,7 +63,7 @@ public class InputProcessor {
             try {
                 dateTime = LocalDateTime.parse(inputDateTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
             } catch (DateTimeParseException e) {
-                System.out.println("Wrong date time format, try again with format yyyy-MM-dd HH:mm");
+                Printer.wrongDateTimeFormat();
             }
         }
         return dateTime;
@@ -103,7 +103,8 @@ public class InputProcessor {
         String inputIsBankTransaction = sc.nextLine().trim().toLowerCase();
 
         if (inputIsBankTransaction.equals("yes") || inputIsBankTransaction.equals("true")
-            || inputIsBankTransaction.equals("y") || inputIsBankTransaction.equals("taip")) {
+            || inputIsBankTransaction.equals("y") || inputIsBankTransaction.equals("taip")
+            || inputIsBankTransaction.equals("t") || inputIsBankTransaction.equals("+")) {
             isBankTransaction = true;
         }
         return isBankTransaction;
@@ -122,5 +123,4 @@ public class InputProcessor {
         }
         return paymentMethod;
     }
-
 }

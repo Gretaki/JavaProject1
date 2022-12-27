@@ -1,14 +1,13 @@
 import java.time.LocalDateTime;
 
 public class Expense {
-    float amount;
-    LocalDateTime dateTime;
-    String category;
-    String paymentMethod;
-    String additionalInformation;
+    private final float amount;
+    private final LocalDateTime dateTime;
+    private final String category;
+    private final String paymentMethod;
+    private final String additionalInformation;
 
-    public Expense(float amount, LocalDateTime dateTime, String category,
-                   String paymentMethod, String additionalInformation) {
+    public Expense(float amount, LocalDateTime dateTime, String category, String paymentMethod, String additionalInformation) {
         this.amount = amount;
         this.dateTime = dateTime;
         this.category = category;

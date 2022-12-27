@@ -1,46 +1,32 @@
 import java.util.Arrays;
-import java.util.Objects;
 
 public class Budget {
-    Income[] incomes = new Income[Constants.ARRAY_SIZE];
-    Expense[] expenses = new Expense[Constants.ARRAY_SIZE];
+    private final Income[] incomes = new Income[Constants.ARRAY_SIZE];
+    private final Expense[] expenses = new Expense[Constants.ARRAY_SIZE];
 
     public void setIncome(Income income) {
         int length = getNotNullArrayLength(incomes);
-        incomes[length] = income;
+        if (length < incomes.length) {
+            incomes[length] = income;
+        } else Printer.noSpaceLeft("income");
     }
 
     public void setExpense(Expense expense) {
         int length = getNotNullArrayLength(expenses);
-        expenses[length] = expense;
+        if (length < expenses.length) {
+            expenses[length] = expense;
+        } else Printer.noSpaceLeft("expense");
+
     }
 
     public Income[] getIncomes() {
         int length = getNotNullArrayLength(incomes);
-        Income[] result = new Income[length];
-
-        int resultCounter = 0;
-        for (Income income : incomes) {
-            if (income != null) {
-                result[resultCounter] = income;
-                resultCounter++;
-            }
-        }
-        return result;
+        return Arrays.copyOfRange(incomes, 0, length);
     }
 
     public Expense[] getExpenses() {
         int length = getNotNullArrayLength(expenses);
-        Expense[] result = new Expense[length];
-
-        int resultCounter = 0;
-        for (Expense expense : expenses) {
-            if (expense != null) {
-                result[resultCounter] = expense;
-                resultCounter++;
-            }
-        }
-        return result;
+        return Arrays.copyOfRange(expenses, 0, length);
     }
 
     private int getNotNullArrayLength(Expense[] expenses) {
@@ -49,7 +35,7 @@ public class Budget {
                 return i;
             }
         }
-        return 0;
+        return expenses.length;
     }
 
     private int getNotNullArrayLength(Income[] incomes) {
@@ -58,6 +44,6 @@ public class Budget {
                 return i;
             }
         }
-        return 0;
+        return incomes.length;
     }
 }

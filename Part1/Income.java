@@ -1,11 +1,11 @@
 import java.time.LocalDate;
 
 public class Income {
-    float amount;
-    LocalDate date;
-    String category;
-    boolean isBankTransaction;
-    String additionalInformation;
+    private final float amount;
+    private final LocalDate date;
+    private final String category;
+    private final boolean isBankTransaction;
+    private final String additionalInformation;
 
     public Income(float amount, LocalDate date, String category, boolean isBankTransaction, String additionalInformation) {
         this.amount = amount;
