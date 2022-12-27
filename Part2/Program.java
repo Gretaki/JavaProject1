@@ -21,6 +21,7 @@ public class Program {
                 case "ie" -> addExpense(sc, budget);
                 case "oi" -> Printer.print(budget.getIncomes());
                 case "oe" -> Printer.print(budget.getExpenses());
+                case "b" -> Printer.printBudget(budget.balance());
                 default -> Printer.invalidArgumentMessage();
             }
         }

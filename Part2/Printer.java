@@ -49,6 +49,7 @@ public class Printer {
             [ie] - input expense
             [oi] - output income
             [oe] - output expense
+            [b] - get budget
             [x] - exit
             """);
     }
@@ -71,5 +72,9 @@ public class Printer {
 
     public static void wrongDateTimeFormat() {
         System.out.println("Wrong date time format, try again with format yyyy-MM-dd HH:mm");
+    }
+
+    public static void printBudget(float balance) {
+        System.out.printf("Budged is: %.2f\n", balance);
     }
 }

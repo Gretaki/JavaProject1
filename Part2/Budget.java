@@ -4,6 +4,18 @@ public class Budget {
     private final ArrayList<Income> incomes = new ArrayList<>();
     private final ArrayList<Expense> expenses = new ArrayList<>();
 
+    public float balance(){
+        float balance = 0;
+        for (Income income: incomes) {
+            balance+= income.getAmount();
+        }
+        for (Expense expense: expenses) {
+            balance-= expense.getAmount();
+        }
+        
+        return balance;
+    }
+    
     public void setIncome(Income income) {
         incomes.add(income);
     }

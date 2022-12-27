@@ -15,6 +15,10 @@ public class Expense {
         this.additionalInformation = additionalInformation;
     }
 
+    public float getAmount() {
+        return amount;
+    }
+
     @Override
     public String toString() {
         return "Expense{" +
