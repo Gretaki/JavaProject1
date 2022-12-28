@@ -1,7 +1,7 @@
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class Expense extends Transaction{
+public class Expense extends Transaction {
     private final LocalDateTime dateTime;
     private final String category;
     private final String type;

@@ -43,7 +43,7 @@ public class Program {
         String additionalInformation = inputProcessor.getAdditionalInformation();
 
         Income income = new Income(amount, date, category, type, isBankTransaction, additionalInformation);
-        budget.setIncome(income);
+        budget.addTransaction(income);
     }
 
 
@@ -59,7 +59,7 @@ public class Program {
         String additionalInformation = inputProcessor.getAdditionalInformation();
 
         Expense expense = new Expense(amount, dateTime, category, type, paymentMethod, additionalInformation);
-        budget.setExpense(expense);
+        budget.addTransaction(expense);
     }
 
     private static void deleteTransaction(Scanner sc, Budget budget) {

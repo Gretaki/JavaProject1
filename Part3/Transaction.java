@@ -1,5 +1,4 @@
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.UUID;
 
 public class Transaction {
@@ -28,5 +27,13 @@ public class Transaction {
 
     public String getAdditionalInformation() {
         return additionalInformation;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Transaction that = (Transaction) o;
+        return id.equals(that.id);
     }
 }

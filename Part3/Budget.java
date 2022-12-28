@@ -1,15 +1,14 @@
 import java.util.ArrayList;
 
 public class Budget {
-    private final ArrayList<Income> incomes = new ArrayList<>();
-    private final ArrayList<Expense> expenses = new ArrayList<>();
+    private final ArrayList<Transaction> transactions = new ArrayList<>();
 
     public float balance() {
         float balance = 0;
-        for (Income income : incomes) {
+        for (Income income : getIncomes()) {
             balance += income.getAmount();
         }
-        for (Expense expense : expenses) {
+        for (Expense expense : getExpenses()) {
             balance -= expense.getAmount();
         }
 
@@ -17,23 +16,32 @@ public class Budget {
     }
 
     public void deleteTransaction(String id) {
-        incomes.removeIf(income -> income.getId().equals(id));
-        expenses.removeIf(expense -> expense.getId().equals(id));
+        transactions.removeIf(income -> income.getId().equals(id));
     }
 
-    public void setIncome(Income income) {
-        incomes.add(income);
-    }
-
-    public void setExpense(Expense expense) {
-        expenses.add(expense);
+    public void addTransaction(Transaction transaction) {
+        transactions.add(transaction);
     }
 
     public ArrayList<Income> getIncomes() {
+        ArrayList<Income> incomes = new ArrayList<>();
+        for (Transaction transaction : transactions) {
+            try {
+                incomes.add((Income) transaction);
+            } catch (ClassCastException ignored) {
+            }
+        }
         return incomes;
     }
 
     public ArrayList<Expense> getExpenses() {
+        ArrayList<Expense> expenses = new ArrayList<>();
+        for (Transaction transaction : transactions) {
+            try {
+                expenses.add((Expense) transaction);
+            } catch (ClassCastException ignored) {
+            }
+        }
         return expenses;
     }
 }
