@@ -79,6 +79,16 @@ public class InputProcessor {
         return inputCategory;
     }
 
+    public String getType() {
+        Printer.enterType();
+        String inputType = sc.nextLine().trim();
+
+        if (inputType.equals("-")) {
+            return null;
+        }
+        return inputType;
+    }
+    
     public String getAdditionalInformation() {
         Printer.enterAdditionalInformation();
         String inputAdditionalInformation = sc.nextLine().trim();

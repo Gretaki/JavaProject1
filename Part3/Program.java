@@ -38,10 +38,11 @@ public class Program {
         float amount = inputProcessor.getAmount();
         LocalDate date = inputProcessor.getDate();
         String category = inputProcessor.getCategory();
+        String type = inputProcessor.getType();
         boolean isBankTransaction = inputProcessor.getIsBankTransaction();
         String additionalInformation = inputProcessor.getAdditionalInformation();
 
-        Income income = new Income(amount, date, category, isBankTransaction, additionalInformation);
+        Income income = new Income(amount, date, category, type, isBankTransaction, additionalInformation);
         budget.setIncome(income);
     }
 
@@ -53,10 +54,11 @@ public class Program {
         float amount = inputProcessor.getAmount();
         LocalDateTime dateTime = inputProcessor.getDateTime();
         String category = inputProcessor.getCategory();
+        String type = inputProcessor.getType();
         String paymentMethod = inputProcessor.getPaymentMethod();
         String additionalInformation = inputProcessor.getAdditionalInformation();
 
-        Expense expense = new Expense(amount, dateTime, category, paymentMethod, additionalInformation);
+        Expense expense = new Expense(amount, dateTime, category, type, paymentMethod, additionalInformation);
         budget.setExpense(expense);
     }
 

@@ -30,6 +30,10 @@ public class Printer {
         System.out.print("Enter category: ");
     }
 
+    public static void enterType() {
+        System.out.print("Enter type: ");
+    }
+
     public static void enterPaymentMethod() {
         System.out.print("Enter payment method: ");
     }
