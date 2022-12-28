@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Budget {
     private final ArrayList<Transaction> transactions = new ArrayList<>();
@@ -15,12 +16,17 @@ public class Budget {
         return balance;
     }
 
-    public void deleteTransaction(String id) {
-        transactions.removeIf(income -> income.getId().equals(id));
+    public void deleteTransaction(Transaction transaction) {
+        transactions.remove(transaction);
     }
 
     public void addTransaction(Transaction transaction) {
         transactions.add(transaction);
+    }
+
+    public void updateTransaction( Transaction newTransaction) {
+        int index = transactions.indexOf(newTransaction);
+        transactions.set(index, newTransaction);
     }
 
     public ArrayList<Income> getIncomes() {

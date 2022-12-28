@@ -1,6 +1,7 @@
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Scanner;
+import java.util.UUID;
 
 public class Program {
     public static void main(String[] args) {
@@ -20,6 +21,7 @@ public class Program {
                 case "ii" -> addIncome(sc, budget);
                 case "ie" -> addExpense(sc, budget);
                 case "d" -> deleteTransaction(sc, budget);
+                case "e" -> editTransaction(sc, budget);
                 case "b" -> Printer.printBudget(budget.balance());
                 case "o" -> printAllTransactions(budget);
                 case "oi" -> Printer.print(budget.getIncomes(), "Incomes");
@@ -33,32 +35,13 @@ public class Program {
 
     private static void addIncome(Scanner sc, Budget budget) {
         InputProcessor inputProcessor = new InputProcessor(sc);
-        Printer.inputMessage("income");
-
-        float amount = inputProcessor.getAmount();
-        LocalDate date = inputProcessor.getDate();
-        String category = inputProcessor.getCategory();
-        String type = inputProcessor.getType();
-        boolean isBankTransaction = inputProcessor.getIsBankTransaction();
-        String additionalInformation = inputProcessor.getAdditionalInformation();
-
-        Income income = new Income(amount, date, category, type, isBankTransaction, additionalInformation);
+        Income income = inputProcessor.getIncome();
         budget.addTransaction(income);
     }
 
-
     private static void addExpense(Scanner sc, Budget budget) {
         InputProcessor inputProcessor = new InputProcessor(sc);
-        Printer.inputMessage("expense");
-
-        float amount = inputProcessor.getAmount();
-        LocalDateTime dateTime = inputProcessor.getDateTime();
-        String category = inputProcessor.getCategory();
-        String type = inputProcessor.getType();
-        String paymentMethod = inputProcessor.getPaymentMethod();
-        String additionalInformation = inputProcessor.getAdditionalInformation();
-
-        Expense expense = new Expense(amount, dateTime, category, type, paymentMethod, additionalInformation);
+        Expense expense = inputProcessor.getExpense();
         budget.addTransaction(expense);
     }
 
@@ -66,10 +49,31 @@ public class Program {
         InputProcessor inputProcessor = new InputProcessor(sc, budget);
         Printer.deleteMessage();
 
-        String id = inputProcessor.getId();
-        budget.deleteTransaction(id);
+        Transaction transaction = inputProcessor.getTransactionById();
+        budget.deleteTransaction(transaction);
     }
-    
+
+    private static void editTransaction(Scanner sc, Budget budget) {
+        if (budget.getExpenses().size() + budget.getIncomes().size() == 0) {
+            Printer.noTransactionsMessage();
+            return;
+        }
+        InputProcessor inputProcessor = new InputProcessor(sc, budget);
+        Printer.editMessage();
+
+        Transaction transaction = inputProcessor.getTransactionById();
+        Transaction newTransaction;
+
+        if (transaction instanceof Income oldIncome) {
+            newTransaction = inputProcessor.getEditedIncome(oldIncome);
+        } else {
+            Expense oldExpense = (Expense) transaction;
+            newTransaction = inputProcessor.getEditedExpense(oldExpense);
+        }
+
+        budget.updateTransaction(newTransaction);
+    }
+
     private static void printAllTransactions(Budget budget) {
         Printer.print(budget.getIncomes(), "Incomes");
         Printer.print(budget.getExpenses(), "Expenses");

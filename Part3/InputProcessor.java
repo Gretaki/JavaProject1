@@ -19,7 +19,76 @@ public class InputProcessor {
         this.budget = budget;
     }
 
-    public float getAmount() {
+    public Income getIncome() {
+        Printer.inputMessage("income");
+
+        float amount = getAmount();
+        LocalDate date = getDate();
+        String category = getCategory();
+        String type = getType();
+        boolean isBankTransaction = getIsBankTransaction();
+        String additionalInformation = getAdditionalInformation();
+
+        return new Income(amount, date, category, type, isBankTransaction, additionalInformation);
+    }
+
+    public Expense getExpense() {
+        Printer.inputMessage("expense");
+
+        float amount = getAmount();
+        LocalDateTime dateTime = getDateTime();
+        String category = getCategory();
+        String type = getType();
+        String paymentMethod = getPaymentMethod();
+        String additionalInformation = getAdditionalInformation();
+
+        return new Expense(amount, dateTime, category, type, paymentMethod, additionalInformation);
+    }
+
+    public Income getEditedIncome(Income income) {
+        Printer.editMessage("income");
+
+        float newAmount = editAmount(income.getAmount());
+        LocalDate newDate = editDate(income.getDate());
+        String newCategory = editCategory(income.getCategory());
+        String newType = editType(income.getType());
+        boolean newIsBankTransaction = editIsBankTransaction(income.isBankTransaction());
+        String newAdditionalInformation = editAdditionalInformation(income.getAdditionalInformation());
+
+        return new Income(income.getId(), newAmount, newDate, newCategory, newType, newIsBankTransaction, newAdditionalInformation);
+    }
+
+    public Expense getEditedExpense(Expense expense) {
+        Printer.editMessage("expense");
+
+        float newAmount = editAmount(expense.getAmount());
+        LocalDateTime newDateTime = editDateTime(expense.getDateTime());
+        String newCategory = editCategory(expense.getCategory());
+        String newType = editType(expense.getType());
+        String newPaymentMethod = editPaymentMethod(expense.getPaymentMethod());
+        String newAdditionalInformation = editAdditionalInformation(expense.getAdditionalInformation());
+
+        return new Expense(expense.getId(), newAmount, newDateTime, newCategory, newType, newPaymentMethod, newAdditionalInformation);
+    }
+
+    private boolean editField() {
+        while (true) {
+            Printer.editOptions();
+            String inputOption = sc.nextLine().toLowerCase();
+
+            switch (inputOption) {
+                case "1" -> {
+                    return true;
+                }
+                case "2" -> {
+                    return false;
+                }
+                default -> Printer.invalidArgumentMessage();
+            }
+        }
+    }
+
+    private float getAmount() {
         while (true) {
             Printer.enterAmount();
             String inputAmount = sc.nextLine().trim();
@@ -32,6 +101,15 @@ public class InputProcessor {
                 Printer.noAmountField();
             }
         }
+    }
+
+    private float editAmount(float oldAmount) {
+        Printer.currentAmount(oldAmount);
+        boolean editField = editField();
+        if (editField) {
+            return getAmount();
+        }
+        return oldAmount;
     }
 
     public LocalDate getDate() {
@@ -49,6 +127,15 @@ public class InputProcessor {
                 Printer.wrongDateFormat();
             }
         }
+    }
+
+    private LocalDate editDate(LocalDate oldDate) {
+        Printer.currentDate(oldDate);
+        boolean editField = editField();
+        if (editField) {
+            return getDate();
+        }
+        return oldDate;
     }
 
     public LocalDateTime getDateTime() {
@@ -69,6 +156,15 @@ public class InputProcessor {
         }
     }
 
+    private LocalDateTime editDateTime(LocalDateTime oldDateTime) {
+        Printer.currentDateTime(oldDateTime);
+        boolean editField = editField();
+        if (editField) {
+            return getDateTime();
+        }
+        return oldDateTime;
+    }
+
     public String getCategory() {
         Printer.enterCategory();
         String inputCategory = sc.nextLine().trim();
@@ -77,6 +173,15 @@ public class InputProcessor {
             return null;
         }
         return inputCategory;
+    }
+
+    private String editCategory(String oldCategory) {
+        Printer.currentCategory(oldCategory);
+        boolean editField = editField();
+        if (editField) {
+            return getCategory();
+        }
+        return oldCategory;
     }
 
     public String getType() {
@@ -88,7 +193,16 @@ public class InputProcessor {
         }
         return inputType;
     }
-    
+
+    private String editType(String oldType) {
+        Printer.currentType(oldType);
+        boolean editField = editField();
+        if (editField) {
+            return getType();
+        }
+        return oldType;
+    }
+
     public String getAdditionalInformation() {
         Printer.enterAdditionalInformation();
         String inputAdditionalInformation = sc.nextLine().trim();
@@ -99,6 +213,15 @@ public class InputProcessor {
         return inputAdditionalInformation;
     }
 
+    private String editAdditionalInformation(String oldAdditionalInformation) {
+        Printer.currentAdditionalInformation(oldAdditionalInformation);
+        boolean editField = editField();
+        if (editField) {
+            return getAdditionalInformation();
+        }
+        return oldAdditionalInformation;
+    }
+
     public boolean getIsBankTransaction() {
         Printer.enterIsBankTransaction();
         String inputIsBankTransaction = sc.nextLine().trim().toLowerCase();
@@ -106,6 +229,15 @@ public class InputProcessor {
         return inputIsBankTransaction.equals("yes") || inputIsBankTransaction.equals("true")
             || inputIsBankTransaction.equals("y") || inputIsBankTransaction.equals("taip")
             || inputIsBankTransaction.equals("t") || inputIsBankTransaction.equals("+");
+    }
+
+    private boolean editIsBankTransaction(boolean oldIsBankTransaction) {
+        Printer.currentIsBankTransaction(oldIsBankTransaction);
+        boolean editField = editField();
+        if (editField) {
+            return getIsBankTransaction();
+        }
+        return oldIsBankTransaction;
     }
 
     public String getPaymentMethod() {
@@ -118,20 +250,29 @@ public class InputProcessor {
         return inputPaymentMethod;
     }
 
-    public String getId() {
+    private String editPaymentMethod(String oldPaymentMethod) {
+        Printer.currentPaymentMethod(oldPaymentMethod);
+        boolean editField = editField();
+        if (editField) {
+            return getPaymentMethod();
+        }
+        return oldPaymentMethod;
+    }
+
+    public Transaction getTransactionById() {
         while (true) {
             Printer.enterId();
             String inputId = sc.nextLine().trim();
 
             for (Income income : budget.getIncomes()) {
                 if (income.getId().equals(inputId)) {
-                    return inputId;
+                    return income;
                 }
             }
 
             for (Expense expense : budget.getExpenses()) {
                 if (expense.getId().equals(inputId)) {
-                    return inputId;
+                    return expense;
                 }
             }
 
