@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class Budget {
     private final ArrayList<Transaction> transactions = new ArrayList<>();
@@ -24,7 +23,7 @@ public class Budget {
         transactions.add(transaction);
     }
 
-    public void updateTransaction( Transaction newTransaction) {
+    public void updateTransaction(Transaction newTransaction) {
         int index = transactions.indexOf(newTransaction);
         transactions.set(index, newTransaction);
     }

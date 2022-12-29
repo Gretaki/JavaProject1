@@ -28,7 +28,7 @@ public class Printer {
     public static void currentAmount(float amount) {
         System.out.printf("Current amount: %.2f\n", amount);
     }
-    
+
     public static void enterAmount() {
         System.out.print("Enter amount: ");
     }
@@ -36,7 +36,7 @@ public class Printer {
     public static void currentDate(LocalDate date) {
         System.out.printf("Current date of the income transaction: %s\n", date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
     }
-    
+
     public static void enterDate() {
         System.out.print("Enter date of the income transaction (for today - write 'now'): ");
     }
@@ -44,7 +44,7 @@ public class Printer {
     public static void currentDateTime(LocalDateTime dateTime) {
         System.out.printf("Current dateTime of the expense transaction: %s\n", dateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
     }
-    
+
     public static void enterDateTime() {
         System.out.print("Enter date and time of the expense transaction (for now - write 'now'): ");
     }
@@ -52,7 +52,7 @@ public class Printer {
     public static void currentCategory(String category) {
         System.out.printf("Current category: %s\n", category);
     }
-    
+
     public static void enterCategory() {
         System.out.print("Enter category: ");
     }
@@ -60,7 +60,7 @@ public class Printer {
     public static void currentType(String type) {
         System.out.printf("Current type: %s\n", type);
     }
-    
+
     public static void enterType() {
         System.out.print("Enter type: ");
     }
@@ -68,7 +68,7 @@ public class Printer {
     public static void currentPaymentMethod(String paymentMethod) {
         System.out.printf("Current payment method: %s\n", paymentMethod);
     }
-    
+
     public static void enterPaymentMethod() {
         System.out.print("Enter payment method: ");
     }
@@ -76,7 +76,7 @@ public class Printer {
     public static void currentAdditionalInformation(String additionalInformation) {
         System.out.printf("Current additional information: %s\n", additionalInformation);
     }
-    
+
     public static void enterAdditionalInformation() {
         System.out.print("Enter additional information: ");
     }
@@ -84,7 +84,7 @@ public class Printer {
     public static void currentIsBankTransaction(boolean isBankTransaction) {
         System.out.printf("Current transaction went through bank: %b\n", isBankTransaction);
     }
-    
+
     public static void enterIsBankTransaction() {
         System.out.print("Did transaction go through bank: ");
     }

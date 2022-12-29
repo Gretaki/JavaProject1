@@ -1,7 +1,4 @@
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Scanner;
-import java.util.UUID;
 
 public class Program {
     public static void main(String[] args) {

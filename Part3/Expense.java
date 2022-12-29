@@ -10,7 +10,7 @@ public class Expense extends Transaction {
         this.dateTime = dateTime;
         this.paymentMethod = paymentMethod;
     }
-    
+
     public Expense(float amount, LocalDateTime dateTime, String category, String type, String paymentMethod, String additionalInformation) {
         super(amount, dateTime.toLocalDate(), category, type, additionalInformation);
         this.dateTime = dateTime;
@@ -20,7 +20,7 @@ public class Expense extends Transaction {
     public LocalDateTime getDateTime() {
         return dateTime;
     }
-    
+
     public String getPaymentMethod() {
         return paymentMethod;
     }

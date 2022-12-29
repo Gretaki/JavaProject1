@@ -13,7 +13,7 @@ public class Income extends Transaction {
         super(amount, date, category, type, additionalInformation);
         this.isBankTransaction = isBankTransaction;
     }
-    
+
     public boolean isBankTransaction() {
         return isBankTransaction;
     }
