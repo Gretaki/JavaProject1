@@ -3,6 +3,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.List;
 import java.util.Scanner;
 
 public class InputProcessor {
@@ -12,11 +13,6 @@ public class InputProcessor {
     public InputProcessor(Scanner sc) {
         this.sc = sc;
         budget = null;
-    }
-
-    public InputProcessor(Scanner sc, Budget budget) {
-        this.sc = sc;
-        this.budget = budget;
     }
 
     public float getAmount() {
@@ -93,19 +89,13 @@ public class InputProcessor {
         return getNextLine();
     }
 
-    public String getId() {
+    public String getId(List<String> validIds) {
         while (true) {
             Printer.enterId();
             String inputId = getNextLine();
 
-            for (Income income : budget.getIncomes()) {
-                if (income.getId().equals(inputId)) {
-                    return inputId;
-                }
-            }
-
-            for (Expense expense : budget.getExpenses()) {
-                if (expense.getId().equals(inputId)) {
+            for (String id : validIds) {
+                if (inputId.equals(id)) {
                     return inputId;
                 }
             }

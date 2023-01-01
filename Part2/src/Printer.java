@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Printer {
 
     public static void print(ArrayList<?> transactions, String type) {
-        System.out.println(type.concat(": ").concat(String.valueOf(transactions)));
+        System.out.println(type.concat(": ").concat(transactions.toString()));
     }
 
     public static void inputMessage(TransactionType type) {
@@ -55,7 +55,7 @@ public class Printer {
             [4] - output expense
             [5] - output all transactions
             [6] - delete transactions
-            [7] - get budget
+            [7] - get balance
             [x] - exit
             """);
     }
@@ -84,11 +84,15 @@ public class Printer {
         System.out.println("Wrong date time format, try again with format yyyy-MM-dd HH:mm");
     }
 
-    public static void printBudget(float balance) {
-        System.out.printf("Budged is: %.2f\n", balance);
+    public static void printBalance(float balance) {
+        System.out.printf("Balance is: %.2f\n", balance);
     }
 
     public static void enterId() {
         System.out.print("Enter id: ");
+    }
+
+    public static void noTransactionsMessage() {
+        System.out.println("No transactions.");
     }
 }
