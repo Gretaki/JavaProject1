@@ -17,8 +17,8 @@ public class Budget {
         return incomeTotal - expenseTotal;
     }
 
-    public void deleteTransaction(Transaction transaction) {
-        transactions.remove(transaction);
+    public void deleteTransaction(String id) {
+        transactions.removeIf(transaction -> transaction.getId().equals(id));
     }
 
     public void addTransaction(Transaction transaction) {
