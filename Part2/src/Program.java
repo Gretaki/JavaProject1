@@ -1,6 +1,8 @@
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Stream;
 
 public class Program {
     public static void main(String[] args) {
@@ -30,7 +32,7 @@ public class Program {
                 case "4" -> Printer.print(budget.getExpenses(), TransactionType.EXPENSE.name.toUpperCase());
                 case "5" -> printAllTransactions(budget);
                 case "6" -> deleteTransaction(sc, budget);
-                case "7" -> Printer.printBudget(budget.balance());
+                case "7" -> Printer.printBalance(budget.balance());
                 default -> Printer.invalidArgumentMessage();
             }
         }
@@ -67,10 +69,19 @@ public class Program {
     }
 
     private static void deleteTransaction(Scanner sc, Budget budget) {
-        InputProcessor inputProcessor = new InputProcessor(sc, budget);
+        if (budget.getIncomes().size() + budget.getExpenses().size() == 0) {
+            Printer.noTransactionsMessage();
+            return;
+        }
+
+        InputProcessor inputProcessor = new InputProcessor(sc);
+        Stream<String> validIncomeIds = budget.getIncomes().stream().map(Income::getId);
+        Stream<String> validExpenseIds = budget.getExpenses().stream().map(Expense::getId);
+        List<String> validIds = Stream.concat(validIncomeIds, validExpenseIds).toList();
+       
         Printer.deleteMessage();
 
-        String id = inputProcessor.getId();
+        String id = inputProcessor.getId(validIds);
         budget.deleteTransaction(id);
     }
 
