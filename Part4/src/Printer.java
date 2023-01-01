@@ -1,3 +1,5 @@
+package src;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -13,6 +15,10 @@ public class Printer {
         System.out.printf("Input of one %s transaction.\n", inputKind);
     }
 
+    public static void noTransactions() {
+        System.out.println("No transactions to save");
+    }
+    
     public static void editMessage(String inputKind) {
         System.out.printf("Edit of one %s transaction.\n", inputKind);
     }
@@ -99,10 +105,13 @@ public class Printer {
             [ii] - input income
             [ie] - input expense
             [d] - delete transactions
+            [e] - edit transaction
             [b] - get budget
             [o] - output all transactions
             [oi] - output income
             [oe] - output expense
+            [5] - save data to file
+            [6] - upload data from file
             [x] - exit
             """);
     }
@@ -149,5 +158,17 @@ public class Printer {
 
     public static void noTransactionsMessage() {
         System.out.println("No transactions to edit.");
+    }
+
+    public static void enterFileName() {
+        System.out.print("Enter file name: ");
+    }
+
+    public static void noSuchFileExists() {
+        System.out.println("No such file exists.");
+    }
+
+    public static void uploadedTransactions() {
+        System.out.println("Uploaded transactions: ");
     }
 }

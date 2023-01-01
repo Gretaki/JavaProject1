@@ -1,9 +1,11 @@
+package src;
+
 import java.time.LocalDate;
 import java.util.UUID;
 
 public abstract class Transaction {
     private final String id;
-    private float amount;
+    private final float amount;
     private final LocalDate date;
     private final String category;
     private final String type;
@@ -27,6 +29,19 @@ public abstract class Transaction {
         this.additionalInformation = additionalInformation;
     }
 
+    public Transaction(float amount, LocalDate date, String category) {
+        this.id = UUID.randomUUID().toString();
+        this.amount = amount;
+        this.date = date;
+        this.category = category;
+        this.type = null;
+        this.additionalInformation = null;
+    }
+
+    public String[] getValuesAsString() {
+        return new String[]{this.id, String.format("%.2f", this.amount), this.category, this.date.toString()};
+    }
+    
     public String getId() {
         return id;
     }

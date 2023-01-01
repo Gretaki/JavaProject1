@@ -1,3 +1,6 @@
+package src;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -15,6 +18,12 @@ public class Expense extends Transaction {
         super(amount, dateTime.toLocalDate(), category, type, additionalInformation);
         this.dateTime = dateTime;
         this.paymentMethod = paymentMethod;
+    }
+
+    public Expense(float amount, LocalDate date, String category) {
+        super(amount, date, category);
+        this.dateTime = date.atStartOfDay();
+        this.paymentMethod = null;
     }
 
     public LocalDateTime getDateTime() {

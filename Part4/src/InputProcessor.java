@@ -1,3 +1,7 @@
+package src;
+
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -277,6 +281,22 @@ public class InputProcessor {
             }
 
             Printer.wrongId();
+        }
+    }
+
+    public String getFilePath() {
+        while (true) {
+            Printer.enterFileName();
+            String inputFileName = sc.nextLine().trim();
+
+            try {
+                String filePath = "inputFiles/" + inputFileName;
+                new FileReader(filePath);
+                return filePath;
+            } catch (FileNotFoundException e) {
+                Printer.noSuchFileExists();
+            }
+
         }
     }
 }

@@ -1,8 +1,10 @@
+package src;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class Income extends Transaction {
-    private boolean isBankTransaction;
+    private final boolean isBankTransaction;
 
     public Income(String id, float amount, LocalDate date, String category, String type, boolean isBankTransaction, String additionalInformation) {
         super(id, amount, date, category, type, additionalInformation);
@@ -12,6 +14,11 @@ public class Income extends Transaction {
     public Income(float amount, LocalDate date, String category, String type, boolean isBankTransaction, String additionalInformation) {
         super(amount, date, category, type, additionalInformation);
         this.isBankTransaction = isBankTransaction;
+    }
+
+    public Income(float amount, LocalDate date, String category) {
+        super(amount, date, category);
+        this.isBankTransaction = false;
     }
 
     public boolean isBankTransaction() {
