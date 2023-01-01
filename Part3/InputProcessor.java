@@ -71,6 +71,27 @@ public class InputProcessor {
         return new Expense(expense.getId(), newAmount, newDateTime, newCategory, newType, newPaymentMethod, newAdditionalInformation);
     }
 
+    public Transaction getTransactionById() {
+        while (true) {
+            Printer.enterId();
+            String inputId = sc.nextLine().trim();
+
+            for (Income income : budget.getIncomes()) {
+                if (income.getId().equals(inputId)) {
+                    return income;
+                }
+            }
+
+            for (Expense expense : budget.getExpenses()) {
+                if (expense.getId().equals(inputId)) {
+                    return expense;
+                }
+            }
+
+            Printer.wrongId();
+        }
+    }
+    
     private boolean editField() {
         while (true) {
             Printer.editOptions();
@@ -112,7 +133,7 @@ public class InputProcessor {
         return oldAmount;
     }
 
-    public LocalDate getDate() {
+    private LocalDate getDate() {
         while (true) {
             Printer.enterDate();
             String inputDate = sc.nextLine().trim();
@@ -138,7 +159,7 @@ public class InputProcessor {
         return oldDate;
     }
 
-    public LocalDateTime getDateTime() {
+    private LocalDateTime getDateTime() {
         while (true) {
             Printer.enterDateTime();
             String inputDateTime = sc.nextLine().trim();
@@ -165,7 +186,7 @@ public class InputProcessor {
         return oldDateTime;
     }
 
-    public String getCategory() {
+    private String getCategory() {
         Printer.enterCategory();
         String inputCategory = sc.nextLine().trim();
 
@@ -184,7 +205,7 @@ public class InputProcessor {
         return oldCategory;
     }
 
-    public String getType() {
+    private String getType() {
         Printer.enterType();
         String inputType = sc.nextLine().trim();
 
@@ -203,7 +224,7 @@ public class InputProcessor {
         return oldType;
     }
 
-    public String getAdditionalInformation() {
+    private String getAdditionalInformation() {
         Printer.enterAdditionalInformation();
         String inputAdditionalInformation = sc.nextLine().trim();
 
@@ -222,7 +243,7 @@ public class InputProcessor {
         return oldAdditionalInformation;
     }
 
-    public boolean getIsBankTransaction() {
+    private boolean getIsBankTransaction() {
         Printer.enterIsBankTransaction();
         String inputIsBankTransaction = sc.nextLine().trim().toLowerCase();
 
@@ -240,7 +261,7 @@ public class InputProcessor {
         return oldIsBankTransaction;
     }
 
-    public String getPaymentMethod() {
+    private String getPaymentMethod() {
         Printer.enterPaymentMethod();
         String inputPaymentMethod = sc.nextLine().trim();
 
@@ -257,26 +278,5 @@ public class InputProcessor {
             return getPaymentMethod();
         }
         return oldPaymentMethod;
-    }
-
-    public Transaction getTransactionById() {
-        while (true) {
-            Printer.enterId();
-            String inputId = sc.nextLine().trim();
-
-            for (Income income : budget.getIncomes()) {
-                if (income.getId().equals(inputId)) {
-                    return income;
-                }
-            }
-
-            for (Expense expense : budget.getExpenses()) {
-                if (expense.getId().equals(inputId)) {
-                    return expense;
-                }
-            }
-
-            Printer.wrongId();
-        }
     }
 }
