@@ -9,12 +9,12 @@ public class Printer {
         System.out.println(type.concat(": ").concat(String.valueOf(transactions)));
     }
 
-    public static void inputMessage(String inputKind) {
-        System.out.printf("Input of one %s transaction.\n", inputKind);
+    public static void inputMessage(TransactionType type) {
+        System.out.printf("Input of one %s transaction.\n", type.name);
     }
 
-    public static void editMessage(String inputKind) {
-        System.out.printf("Edit of one %s transaction.\n", inputKind);
+    public static void editMessage(TransactionType type) {
+        System.out.printf("Edit of one %s transaction.\n", type.name);
     }
 
     public static void deleteMessage() {
@@ -96,13 +96,14 @@ public class Printer {
     public static void options() {
         System.out.print("""
             Options:
-            [ii] - input income
-            [ie] - input expense
-            [d] - delete transactions
-            [b] - get budget
-            [o] - output all transactions
-            [oi] - output income
-            [oe] - output expense
+            [1] - input income
+            [2] - input expense
+            [3] - output income
+            [4] - output expense
+            [5] - output all transactions
+            [6] - delete transactions
+            [7] - get budget
+            [8] - edit transactions
             [x] - exit
             """);
     }

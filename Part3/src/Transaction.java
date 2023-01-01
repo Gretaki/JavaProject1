@@ -3,7 +3,7 @@ import java.util.UUID;
 
 public abstract class Transaction {
     private final String id;
-    private float amount;
+    private final float amount;
     private final LocalDate date;
     private final String category;
     private final String type;
