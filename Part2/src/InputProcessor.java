@@ -80,17 +80,17 @@ public class InputProcessor {
 
     public String getCategory() {
         Printer.enterCategory();
-        return getTextInput();
+        return getNextLine();
     }
 
     public String getAdditionalInformation() {
         Printer.enterAdditionalInformation();
-        return getTextInput();
+        return getNextLine();
     }
 
     public String getPaymentMethod() {
         Printer.enterPaymentMethod();
-        return getTextInput();
+        return getNextLine();
     }
 
     public String getId() {
@@ -114,15 +114,6 @@ public class InputProcessor {
         }
     }
 
-    private String getTextInput() {
-        String input = getNextLine();
-
-        if (input.equals("-")) {
-            return "";
-        }
-        return input;
-    }
-    
     private String getNextLine() {
         return sc.nextLine().trim();
     }
