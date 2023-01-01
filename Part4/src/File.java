@@ -21,8 +21,9 @@ public class File {
             } else if (transaction.getClass().equals(Expense.class)) {
                 line = "E,";
             }
+            Objects.requireNonNull(line);
             line += String.join(",", transaction.getValuesAsString()) + "\n";
-            bw.write(Objects.requireNonNull(line));
+            bw.write(line);
         }
 
         bw.close();
