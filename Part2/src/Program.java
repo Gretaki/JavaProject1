@@ -5,11 +5,18 @@ import java.util.Scanner;
 public class Program {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        boolean runProgram = true;
+
+        runProgram(sc);
+
+        sc.close();
+    }
+
+    public static Budget runProgram(Scanner sc) {
         Budget budget = new Budget();
 
         Printer.programStartGreeting();
 
+        boolean runProgram = true;
         while (runProgram) {
             Printer.options();
 
@@ -17,23 +24,22 @@ public class Program {
 
             switch (inputOption) {
                 case "x" -> runProgram = false;
-                case "ii" -> addIncome(sc, budget);
-                case "ie" -> addExpense(sc, budget);
-                case "d" -> deleteTransaction(sc, budget);
-                case "b" -> Printer.printBudget(budget.balance());
-                case "o" -> printAllTransactions(budget);
-                case "oi" -> Printer.print(budget.getIncomes(), "Incomes");
-                case "oe" -> Printer.print(budget.getExpenses(), "Expenses");
+                case "1" -> addIncome(sc, budget);
+                case "2" -> addExpense(sc, budget);
+                case "3" -> Printer.print(budget.getIncomes(), TransactionType.INCOME.name.toUpperCase());
+                case "4" -> Printer.print(budget.getExpenses(), TransactionType.EXPENSE.name.toUpperCase());
+                case "5" -> printAllTransactions(budget);
+                case "6" -> deleteTransaction(sc, budget);
+                case "7" -> Printer.printBudget(budget.balance());
                 default -> Printer.invalidArgumentMessage();
             }
         }
-        sc.close();
-
+        return budget;
     }
 
     private static void addIncome(Scanner sc, Budget budget) {
         InputProcessor inputProcessor = new InputProcessor(sc);
-        Printer.inputMessage("income");
+        Printer.inputMessage(TransactionType.INCOME);
 
         float amount = inputProcessor.getAmount();
         LocalDate date = inputProcessor.getDate();
@@ -42,13 +48,13 @@ public class Program {
         String additionalInformation = inputProcessor.getAdditionalInformation();
 
         Income income = new Income(amount, date, category, isBankTransaction, additionalInformation);
-        budget.setIncome(income);
+        budget.addIncome(income);
     }
 
 
     private static void addExpense(Scanner sc, Budget budget) {
         InputProcessor inputProcessor = new InputProcessor(sc);
-        Printer.inputMessage("expense");
+        Printer.inputMessage(TransactionType.EXPENSE);
 
         float amount = inputProcessor.getAmount();
         LocalDateTime dateTime = inputProcessor.getDateTime();
@@ -57,7 +63,7 @@ public class Program {
         String additionalInformation = inputProcessor.getAdditionalInformation();
 
         Expense expense = new Expense(amount, dateTime, category, paymentMethod, additionalInformation);
-        budget.setExpense(expense);
+        budget.addExpense(expense);
     }
 
     private static void deleteTransaction(Scanner sc, Budget budget) {
@@ -67,7 +73,7 @@ public class Program {
         String id = inputProcessor.getId();
         budget.deleteTransaction(id);
     }
-    
+
     private static void printAllTransactions(Budget budget) {
         Printer.print(budget.getIncomes(), "Incomes");
         Printer.print(budget.getExpenses(), "Expenses");
