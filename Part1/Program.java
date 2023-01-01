@@ -30,7 +30,7 @@ public class Program {
 
     private static void addIncome(Scanner sc, Budget budget) {
         InputProcessor inputProcessor = new InputProcessor(sc);
-        Printer.inputMessage("income");
+        Printer.inputMessage(TransactionType.INCOME);
 
         float amount = inputProcessor.getAmount();
         LocalDate date = inputProcessor.getDate();
@@ -39,13 +39,13 @@ public class Program {
         String additionalInformation = inputProcessor.getAdditionalInformation();
 
         Income income = new Income(amount, date, category, isBankTransaction, additionalInformation);
-        budget.setIncome(income);
+        budget.addIncome(income);
     }
 
 
     private static void addExpense(Scanner sc, Budget budget) {
         InputProcessor inputProcessor = new InputProcessor(sc);
-        Printer.inputMessage("expense");
+        Printer.inputMessage(TransactionType.EXPENSE);
 
         float amount = inputProcessor.getAmount();
         LocalDateTime dateTime = inputProcessor.getDateTime();
@@ -54,6 +54,6 @@ public class Program {
         String additionalInformation = inputProcessor.getAdditionalInformation();
 
         Expense expense = new Expense(amount, dateTime, category, paymentMethod, additionalInformation);
-        budget.setExpense(expense);
+        budget.addExpense(expense);
     }
 }

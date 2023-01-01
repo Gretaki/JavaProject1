@@ -1,49 +1,42 @@
 import java.util.Arrays;
 
 public class Budget {
-    private final Income[] incomes = new Income[Constants.ARRAY_SIZE];
-    private final Expense[] expenses = new Expense[Constants.ARRAY_SIZE];
+    public final static int ARRAY_SIZE = 100;
 
-    public void setIncome(Income income) {
-        int length = getNotNullArrayLength(incomes);
+    private final Income[] incomes = new Income[ARRAY_SIZE];
+    private final Expense[] expenses = new Expense[ARRAY_SIZE];
+
+    public void addIncome(Income income) {
+        int length = getFirstNullIndex(incomes);
         if (length < incomes.length) {
             incomes[length] = income;
-        } else Printer.noSpaceLeft("income");
+        } else Printer.noSpaceLeft(TransactionType.INCOME);
     }
 
-    public void setExpense(Expense expense) {
-        int length = getNotNullArrayLength(expenses);
+    public void addExpense(Expense expense) {
+        int length = getFirstNullIndex(expenses);
         if (length < expenses.length) {
             expenses[length] = expense;
-        } else Printer.noSpaceLeft("expense");
+        } else Printer.noSpaceLeft(TransactionType.EXPENSE);
 
     }
 
     public Income[] getIncomes() {
-        int length = getNotNullArrayLength(incomes);
+        int length = getFirstNullIndex(incomes);
         return Arrays.copyOfRange(incomes, 0, length);
     }
 
     public Expense[] getExpenses() {
-        int length = getNotNullArrayLength(expenses);
+        int length = getFirstNullIndex(expenses);
         return Arrays.copyOfRange(expenses, 0, length);
     }
 
-    private int getNotNullArrayLength(Expense[] expenses) {
-        for (int i = 0; i < expenses.length; i++) {
-            if (expenses[i] == null) {
+    private int getFirstNullIndex(Object[] objects) {
+        for (int i = 0; i < objects.length; i++) {
+            if (objects[i] == null) {
                 return i;
             }
         }
-        return expenses.length;
-    }
-
-    private int getNotNullArrayLength(Income[] incomes) {
-        for (int i = 0; i < incomes.length; i++) {
-            if (incomes[i] == null) {
-                return i;
-            }
-        }
-        return incomes.length;
+        return objects.length;
     }
 }
