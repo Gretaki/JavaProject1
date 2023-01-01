@@ -8,11 +8,9 @@ import java.util.Scanner;
 
 public class InputProcessor {
     private final Scanner sc;
-    private final Budget budget;
 
     public InputProcessor(Scanner sc) {
         this.sc = sc;
-        budget = null;
     }
 
     public float getAmount() {
