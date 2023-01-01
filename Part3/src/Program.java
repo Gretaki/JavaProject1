@@ -3,11 +3,18 @@ import java.util.Scanner;
 public class Program {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        boolean runProgram = true;
+
+        runProgram(sc);
+
+        sc.close();
+    }
+
+    public static Budget runProgram(Scanner sc) {
         Budget budget = new Budget();
 
         Printer.programStartGreeting();
 
+        boolean runProgram = true;
         while (runProgram) {
             Printer.options();
 
@@ -15,19 +22,18 @@ public class Program {
 
             switch (inputOption) {
                 case "x" -> runProgram = false;
-                case "ii" -> addIncome(sc, budget);
-                case "ie" -> addExpense(sc, budget);
-                case "d" -> deleteTransaction(sc, budget);
-                case "e" -> editTransaction(sc, budget);
-                case "b" -> Printer.printBudget(budget.balance());
-                case "o" -> printAllTransactions(budget);
-                case "oi" -> Printer.print(budget.getIncomes(), "Incomes");
-                case "oe" -> Printer.print(budget.getExpenses(), "Expenses");
+                case "1" -> addIncome(sc, budget);
+                case "2" -> addExpense(sc, budget);
+                case "3" -> Printer.print(budget.getIncomes(), TransactionType.INCOME.name.toUpperCase());
+                case "4" -> Printer.print(budget.getExpenses(), TransactionType.EXPENSE.name.toUpperCase());
+                case "5" -> printAllTransactions(budget);
+                case "6" -> deleteTransaction(sc, budget);
+                case "7" -> Printer.printBudget(budget.balance());
+                case "8" -> editTransaction(sc, budget);
                 default -> Printer.invalidArgumentMessage();
             }
         }
-        sc.close();
-
+        return budget;
     }
 
     private static void addIncome(Scanner sc, Budget budget) {

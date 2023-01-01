@@ -20,7 +20,7 @@ public class InputProcessor {
     }
 
     public Income getIncome() {
-        Printer.inputMessage("income");
+        Printer.inputMessage(TransactionType.INCOME);
 
         float amount = getAmount();
         LocalDate date = getDate();
@@ -33,7 +33,7 @@ public class InputProcessor {
     }
 
     public Expense getExpense() {
-        Printer.inputMessage("expense");
+        Printer.inputMessage(TransactionType.EXPENSE);
 
         float amount = getAmount();
         LocalDateTime dateTime = getDateTime();
@@ -46,7 +46,7 @@ public class InputProcessor {
     }
 
     public Income getEditedIncome(Income income) {
-        Printer.editMessage("income");
+        Printer.editMessage(TransactionType.INCOME);
 
         float newAmount = editAmount(income.getAmount());
         LocalDate newDate = editDate(income.getDate());
@@ -59,7 +59,7 @@ public class InputProcessor {
     }
 
     public Expense getEditedExpense(Expense expense) {
-        Printer.editMessage("expense");
+        Printer.editMessage(TransactionType.EXPENSE);
 
         float newAmount = editAmount(expense.getAmount());
         LocalDateTime newDateTime = editDateTime(expense.getDateTime());
@@ -74,7 +74,7 @@ public class InputProcessor {
     public Transaction getTransactionById() {
         while (true) {
             Printer.enterId();
-            String inputId = sc.nextLine().trim();
+            String inputId = getNextLine();
 
             for (Income income : budget.getIncomes()) {
                 if (income.getId().equals(inputId)) {
@@ -91,7 +91,7 @@ public class InputProcessor {
             Printer.wrongId();
         }
     }
-    
+
     private boolean editField() {
         while (true) {
             Printer.editOptions();
@@ -112,7 +112,7 @@ public class InputProcessor {
     private float getAmount() {
         while (true) {
             Printer.enterAmount();
-            String inputAmount = sc.nextLine().trim();
+            String inputAmount = getNextLine();
             try {
                 float amount = Float.parseFloat(inputAmount);
                 return (float) (Math.round(amount * 100.0) / 100.0);
@@ -136,7 +136,7 @@ public class InputProcessor {
     private LocalDate getDate() {
         while (true) {
             Printer.enterDate();
-            String inputDate = sc.nextLine().trim();
+            String inputDate = getNextLine();
 
             if (inputDate.equals("now")) {
                 return LocalDate.now();
@@ -162,7 +162,7 @@ public class InputProcessor {
     private LocalDateTime getDateTime() {
         while (true) {
             Printer.enterDateTime();
-            String inputDateTime = sc.nextLine().trim();
+            String inputDateTime = getNextLine();
 
             if (inputDateTime.equals("now")) {
                 LocalDateTime now = LocalDateTime.now();
@@ -188,12 +188,7 @@ public class InputProcessor {
 
     private String getCategory() {
         Printer.enterCategory();
-        String inputCategory = sc.nextLine().trim();
-
-        if (inputCategory.equals("-")) {
-            return null;
-        }
-        return inputCategory;
+        return getNextLine();
     }
 
     private String editCategory(String oldCategory) {
@@ -207,12 +202,7 @@ public class InputProcessor {
 
     private String getType() {
         Printer.enterType();
-        String inputType = sc.nextLine().trim();
-
-        if (inputType.equals("-")) {
-            return null;
-        }
-        return inputType;
+        return getNextLine();
     }
 
     private String editType(String oldType) {
@@ -226,12 +216,7 @@ public class InputProcessor {
 
     private String getAdditionalInformation() {
         Printer.enterAdditionalInformation();
-        String inputAdditionalInformation = sc.nextLine().trim();
-
-        if (inputAdditionalInformation.equals("-")) {
-            return null;
-        }
-        return inputAdditionalInformation;
+        return getNextLine();
     }
 
     private String editAdditionalInformation(String oldAdditionalInformation) {
@@ -245,7 +230,7 @@ public class InputProcessor {
 
     private boolean getIsBankTransaction() {
         Printer.enterIsBankTransaction();
-        String inputIsBankTransaction = sc.nextLine().trim().toLowerCase();
+        String inputIsBankTransaction = getNextLine().toLowerCase();
 
         return inputIsBankTransaction.equals("yes") || inputIsBankTransaction.equals("true")
             || inputIsBankTransaction.equals("y") || inputIsBankTransaction.equals("taip")
@@ -263,12 +248,7 @@ public class InputProcessor {
 
     private String getPaymentMethod() {
         Printer.enterPaymentMethod();
-        String inputPaymentMethod = sc.nextLine().trim();
-
-        if (inputPaymentMethod.equals("-")) {
-            return null;
-        }
-        return inputPaymentMethod;
+        return getNextLine();
     }
 
     private String editPaymentMethod(String oldPaymentMethod) {
@@ -278,5 +258,9 @@ public class InputProcessor {
             return getPaymentMethod();
         }
         return oldPaymentMethod;
+    }
+
+    private String getNextLine() {
+        return sc.nextLine().trim();
     }
 }
