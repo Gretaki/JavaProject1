@@ -111,7 +111,7 @@ public class InputProcessor {
         }
     }
 
-    private boolean editField() {
+    private boolean confirmEdit() {
         while (true) {
             Printer.editOptions();
             String inputOption = sc.nextLine().toLowerCase();
@@ -145,7 +145,7 @@ public class InputProcessor {
 
     private float editAmount(float oldAmount) {
         Printer.currentAmount(oldAmount);
-        boolean editField = editField();
+        boolean editField = confirmEdit();
         if (editField) {
             return getAmount();
         }
@@ -171,7 +171,7 @@ public class InputProcessor {
 
     private LocalDate editDate(LocalDate oldDate) {
         Printer.currentDate(oldDate);
-        boolean editField = editField();
+        boolean editField = confirmEdit();
         if (editField) {
             return getDate();
         }
@@ -198,7 +198,7 @@ public class InputProcessor {
 
     private LocalDateTime editDateTime(LocalDateTime oldDateTime) {
         Printer.currentDateTime(oldDateTime);
-        boolean editField = editField();
+        boolean editField = confirmEdit();
         if (editField) {
             return getDateTime();
         }
@@ -212,7 +212,7 @@ public class InputProcessor {
 
     private String editCategory(String oldCategory) {
         Printer.currentCategory(oldCategory);
-        boolean editField = editField();
+        boolean editField = confirmEdit();
         if (editField) {
             return getCategory();
         }
@@ -226,7 +226,7 @@ public class InputProcessor {
 
     private String editType(String oldType) {
         Printer.currentType(oldType);
-        boolean editField = editField();
+        boolean editField = confirmEdit();
         if (editField) {
             return getType();
         }
@@ -240,7 +240,7 @@ public class InputProcessor {
 
     private String editAdditionalInformation(String oldAdditionalInformation) {
         Printer.currentAdditionalInformation(oldAdditionalInformation);
-        boolean editField = editField();
+        boolean editField = confirmEdit();
         if (editField) {
             return getAdditionalInformation();
         }
@@ -258,7 +258,7 @@ public class InputProcessor {
 
     private boolean editIsBankTransaction(boolean oldIsBankTransaction) {
         Printer.currentIsBankTransaction(oldIsBankTransaction);
-        boolean editField = editField();
+        boolean editField = confirmEdit();
         if (editField) {
             return getIsBankTransaction();
         }
@@ -272,7 +272,7 @@ public class InputProcessor {
 
     private String editPaymentMethod(String oldPaymentMethod) {
         Printer.currentPaymentMethod(oldPaymentMethod);
-        boolean editField = editField();
+        boolean editField = confirmEdit();
         if (editField) {
             return getPaymentMethod();
         }

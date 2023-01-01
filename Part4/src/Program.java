@@ -45,7 +45,7 @@ public class Program {
     private static void getDataFromFile(Scanner sc, Budget budget) throws IOException {
         InputProcessor inputProcessor = new InputProcessor(sc);
         String filePath = inputProcessor.getFilePath();
-        ArrayList<Transaction> transactions = File.getData(filePath);
+        List<Transaction> transactions = File.readTransactions(filePath);
 
         for (Transaction transaction : transactions) {
             budget.addTransaction(transaction);
