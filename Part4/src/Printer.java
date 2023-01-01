@@ -169,4 +169,8 @@ public class Printer {
     public static void uploadedTransactions() {
         System.out.println("Uploaded transactions: ");
     }
+
+    public static void failedToParseTransactions(String line) {
+        System.out.printf("Failed to parse transaction: %s\n", line);
+    }
 }
