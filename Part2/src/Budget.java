@@ -21,11 +21,11 @@ public class Budget {
         expenses.removeIf(expense -> expense.getId().equals(id));
     }
 
-    public void setIncome(Income income) {
+    public void addIncome(Income income) {
         incomes.add(income);
     }
 
-    public void setExpense(Expense expense) {
+    public void addExpense(Expense expense) {
         expenses.add(expense);
     }
 

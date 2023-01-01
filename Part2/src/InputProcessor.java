@@ -22,7 +22,7 @@ public class InputProcessor {
     public float getAmount() {
         while (true) {
             Printer.enterAmount();
-            String inputAmount = sc.nextLine().trim();
+            String inputAmount = getNextLine();
             try {
                 float amount = Float.parseFloat(inputAmount);
                 return (float) (Math.round(amount * 100.0) / 100.0);
@@ -37,7 +37,7 @@ public class InputProcessor {
     public LocalDate getDate() {
         while (true) {
             Printer.enterDate();
-            String inputDate = sc.nextLine().trim();
+            String inputDate = getNextLine();
 
             if (inputDate.equals("now")) {
                 return LocalDate.now();
@@ -54,7 +54,7 @@ public class InputProcessor {
     public LocalDateTime getDateTime() {
         while (true) {
             Printer.enterDateTime();
-            String inputDateTime = sc.nextLine().trim();
+            String inputDateTime = getNextLine();
 
             if (inputDateTime.equals("now")) {
                 LocalDateTime now = LocalDateTime.now();
@@ -69,49 +69,34 @@ public class InputProcessor {
         }
     }
 
-    public String getCategory() {
-        Printer.enterCategory();
-        String inputCategory = sc.nextLine().trim();
-
-        if (inputCategory.equals("-")) {
-            return null;
-        }
-        return inputCategory;
-    }
-
-    public String getAdditionalInformation() {
-        Printer.enterAdditionalInformation();
-        String inputAdditionalInformation = sc.nextLine().trim();
-
-        if (inputAdditionalInformation.equals("-")) {
-            return null;
-        }
-        return inputAdditionalInformation;
-    }
-
     public boolean getIsBankTransaction() {
         Printer.enterIsBankTransaction();
-        String inputIsBankTransaction = sc.nextLine().trim().toLowerCase();
+        String inputIsBankTransaction = getNextLine().toLowerCase();
 
         return inputIsBankTransaction.equals("yes") || inputIsBankTransaction.equals("true")
             || inputIsBankTransaction.equals("y") || inputIsBankTransaction.equals("taip")
             || inputIsBankTransaction.equals("t") || inputIsBankTransaction.equals("+");
     }
 
+    public String getCategory() {
+        Printer.enterCategory();
+        return getTextInput();
+    }
+
+    public String getAdditionalInformation() {
+        Printer.enterAdditionalInformation();
+        return getTextInput();
+    }
+
     public String getPaymentMethod() {
         Printer.enterPaymentMethod();
-        String inputPaymentMethod = sc.nextLine().trim();
-
-        if (inputPaymentMethod.equals("-")) {
-            return null;
-        }
-        return inputPaymentMethod;
+        return getTextInput();
     }
 
     public String getId() {
         while (true) {
             Printer.enterId();
-            String inputId = sc.nextLine().trim();
+            String inputId = getNextLine();
 
             for (Income income : budget.getIncomes()) {
                 if (income.getId().equals(inputId)) {
@@ -127,5 +112,18 @@ public class InputProcessor {
 
             Printer.wrongId();
         }
+    }
+
+    private String getTextInput() {
+        String input = getNextLine();
+
+        if (input.equals("-")) {
+            return "";
+        }
+        return input;
+    }
+    
+    private String getNextLine() {
+        return sc.nextLine().trim();
     }
 }
