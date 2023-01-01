@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class Printer {
 
     public static void print(ArrayList<?> transactions, String type) {
-        System.out.println(type.concat(": ").concat(String.valueOf(transactions)));
+        System.out.println(type.concat(": ").concat(transactions.toString()));
     }
 
     public static void inputMessage(TransactionType type) {
@@ -16,7 +16,7 @@ public class Printer {
     public static void noTransactions() {
         System.out.println("No transactions to save");
     }
-    
+
     public static void editMessage(TransactionType type) {
         System.out.printf("Edit of one %s transaction.\n", type.name);
     }
@@ -106,7 +106,7 @@ public class Printer {
             [4] - output expense
             [5] - output all transactions
             [6] - delete transactions
-            [7] - get budget
+            [7] - get balance
             [8] - edit transactions
             [9] - save data to file
             [10] - upload data from file
@@ -146,8 +146,8 @@ public class Printer {
         System.out.println("Wrong date time format, try again with format yyyy-MM-dd HH:mm");
     }
 
-    public static void printBudget(float balance) {
-        System.out.printf("Budged is: %.2f\n", balance);
+    public static void printBalance(float balance) {
+        System.out.printf("Balance is: %.2f\n", balance);
     }
 
     public static void enterId() {
@@ -155,7 +155,7 @@ public class Printer {
     }
 
     public static void noTransactionsMessage() {
-        System.out.println("No transactions to edit.");
+        System.out.println("No transactions.");
     }
 
     public static void enterFileName() {

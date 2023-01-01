@@ -5,20 +5,14 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.List;
 import java.util.Scanner;
 
 public class InputProcessor {
     private final Scanner sc;
-    private final Budget budget;
 
     public InputProcessor(Scanner sc) {
         this.sc = sc;
-        budget = null;
-    }
-
-    public InputProcessor(Scanner sc, Budget budget) {
-        this.sc = sc;
-        this.budget = budget;
     }
 
     public Income getIncome() {
@@ -73,24 +67,31 @@ public class InputProcessor {
         return new Expense(expense.getId(), newAmount, newDateTime, newCategory, newType, newPaymentMethod, newAdditionalInformation);
     }
 
-    public Transaction getTransactionById() {
+    public String getId(List<String> validIds) {
         while (true) {
             Printer.enterId();
             String inputId = getNextLine();
 
-            for (Income income : budget.getIncomes()) {
-                if (income.getId().equals(inputId)) {
-                    return income;
-                }
-            }
-
-            for (Expense expense : budget.getExpenses()) {
-                if (expense.getId().equals(inputId)) {
-                    return expense;
+            for (String id : validIds) {
+                if (inputId.equals(id)) {
+                    return inputId;
                 }
             }
 
             Printer.wrongId();
+        }
+    }
+
+    public Transaction getTransaction(List<Transaction> validTransaction) {
+        while (true) {
+            Printer.enterId();
+            String inputId = getNextLine();
+
+            for (Transaction transaction : validTransaction) {
+                if (transaction.getId().equals(inputId)) {
+                    return transaction;
+                }
+            }
         }
     }
 
@@ -109,7 +110,7 @@ public class InputProcessor {
 
         }
     }
-    
+
     private boolean editField() {
         while (true) {
             Printer.editOptions();
