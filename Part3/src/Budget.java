@@ -4,15 +4,17 @@ public class Budget {
     private final ArrayList<Transaction> transactions = new ArrayList<>();
 
     public float balance() {
-        float balance = 0;
+        float incomeTotal = 0;
+        float expenseTotal = 0;
+
         for (Income income : getIncomes()) {
-            balance += income.getAmount();
+            incomeTotal += income.getAmount();
         }
         for (Expense expense : getExpenses()) {
-            balance -= expense.getAmount();
+            expenseTotal += expense.getAmount();
         }
 
-        return balance;
+        return incomeTotal - expenseTotal;
     }
 
     public void deleteTransaction(Transaction transaction) {

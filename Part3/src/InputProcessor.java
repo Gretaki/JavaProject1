@@ -13,12 +13,7 @@ public class InputProcessor {
         this.sc = sc;
         budget = null;
     }
-
-    public InputProcessor(Scanner sc, Budget budget) {
-        this.sc = sc;
-        this.budget = budget;
-    }
-
+    
     public Income getIncome() {
         Printer.inputMessage(TransactionType.INCOME);
 
