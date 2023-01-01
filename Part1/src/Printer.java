@@ -39,7 +39,7 @@ public class Printer {
     }
 
     public static void enterIsBankTransaction() {
-        System.out.print("Does transaction went throw bank: ");
+        System.out.print("Did transaction go through bank: ");
     }
 
     public static void programStartGreeting() {
@@ -49,10 +49,10 @@ public class Printer {
     public static void options() {
         System.out.print("""
             Options:
-            [ii] - input income
-            [ie] - input expense
-            [oi] - output income
-            [oe] - output expense
+            [1] - input income
+            [2] - input expense
+            [3] - output income
+            [4] - output expense
             [x] - exit
             """);
     }
