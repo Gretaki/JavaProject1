@@ -10,8 +10,8 @@ public class Printer {
         System.out.println(Arrays.toString(expenses));
     }
 
-    public static void inputMessage(String inputKind) {
-        System.out.printf("Input of one %s transaction.\n", inputKind);
+    public static void inputMessage(TransactionType type) {
+        System.out.printf("Input of one %s transaction.\n", type.name);
     }
 
     public static void enterAmount() {
@@ -39,7 +39,7 @@ public class Printer {
     }
 
     public static void enterIsBankTransaction() {
-        System.out.print("Does transaction went throw bank: ");
+        System.out.print("Did transaction go through bank: ");
     }
 
     public static void programStartGreeting() {
@@ -49,10 +49,10 @@ public class Printer {
     public static void options() {
         System.out.print("""
             Options:
-            [ii] - input income
-            [ie] - input expense
-            [oi] - output income
-            [oe] - output expense
+            [1] - input income
+            [2] - input expense
+            [3] - output income
+            [4] - output expense
             [x] - exit
             """);
     }
@@ -61,8 +61,8 @@ public class Printer {
         System.out.println("Invalid command, choose from the list");
     }
 
-    public static void noSpaceLeft(String transactionType) {
-        System.out.printf("Transaction not added. No more free place for %s inputs.", transactionType);
+    public static void noSpaceLeft(TransactionType type) {
+        System.out.printf("Transaction not added. No more free place for %s inputs.", type.name);
     }
 
     public static void wrongNumberFormat() {

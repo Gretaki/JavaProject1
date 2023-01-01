@@ -18,7 +18,7 @@ public class Income {
     @Override
     public String toString() {
         return "Income{" +
-            "amount=" + amount +
+            "amount=" + String.format("%.2f", amount) +
             ", date=" + date +
             ", category='" + category + '\'' +
             ", isBankTransaction=" + isBankTransaction +

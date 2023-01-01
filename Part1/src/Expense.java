@@ -18,7 +18,7 @@ public class Expense {
     @Override
     public String toString() {
         return "Expense{" +
-            "amount=" + amount +
+            "amount=" + String.format("%.2f", amount) +
             ", dateTime=" + dateTime +
             ", category='" + category + '\'' +
             ", paymentMethod='" + paymentMethod + '\'' +
